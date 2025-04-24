@@ -14,35 +14,6 @@ export default function FuriaChatbot() {
   const [sessionId, setSessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   const API_URL = "http://localhost:5000/api/chat"; // URL do Back End
   const chatContainerRef = useRef(null);
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      content: (
-        <div className="flex flex-col space-y-2">
-          <span>Fala aí! Aqui é o jogador da FURIA. Como posso ajudar hoje? Bora falar de CS?</span>
-          <div className="flex gap-x-2">
-            <button 
-              onClick={howToUse}
-              className="bg-black flex items-center gap-x-1 bg-white-600 hover:bg-white-700 text-white cursor-pointer rounded-full p-2 transition duration-150"
-              title="Como usar"
-            >
-              <FileQuestion size={20} />
-              Como usar o chat bot?
-            </button>
-            <button 
-              onClick={listFuriaPlayers}
-              className="bg-black flex items-center gap-x-1 bg-white-600 hover:bg-white-700 text-white cursor-pointer rounded-full p-2 transition duration-150"
-              title="Listar jogadores da FURIA"
-            >
-              <Users size={20} />
-              Line da Equipe
-            </button>
-          </div>
-        </div>
-      ),
-      sender: "bot"
-    }
-  ]);
 
   // Função para listar os jogadores da equipe FURIA
   const howToUse = () => {
@@ -82,6 +53,36 @@ export default function FuriaChatbot() {
     // Adiciona as mensagens à conversa
     setMessages(prev => [...prev, userMessage, botResponse]);
   };
+  
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      content: (
+        <div className="flex flex-col space-y-2">
+          <span>Fala aí! Aqui é o jogador da FURIA. Como posso ajudar hoje? Bora falar de CS?</span>
+          <div className="flex gap-x-2">
+            <button 
+              onClick={howToUse}
+              className="bg-black flex items-center gap-x-1 bg-white-600 hover:bg-white-700 text-white cursor-pointer rounded-full p-2 transition duration-150"
+              title="Como usar"
+            >
+              <FileQuestion size={20} />
+              Como usar o chat bot?
+            </button>
+            <button 
+              onClick={listFuriaPlayers}
+              className="bg-black flex items-center gap-x-1 bg-white-600 hover:bg-white-700 text-white cursor-pointer rounded-full p-2 transition duration-150"
+              title="Listar jogadores da FURIA"
+            >
+              <Users size={20} />
+              Line da Equipe
+            </button>
+          </div>
+        </div>
+      ),
+      sender: "bot"
+    }
+  ]);
   
   // Automaticamente descer a tela quando identificar o limite de mensagens
   useEffect(() => {
