@@ -208,7 +208,7 @@ export default function FuriaChatbot() {
   };
 
   return (
-    <div className="flex flex-col h-screen max-h-screen bg-black text-gray-100">
+    <div className="flex flex-col flex-1 bg-black text-gray-100">
       <LoadingAnimation />
       {/* Header */}
       <div className="bg-black border-b border-white-600 py-4 px-6 flex justify-between items-center">
