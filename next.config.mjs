@@ -9,12 +9,16 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'pley.gg',
+        hostname: 'e3ba6e8732e83984.cdn.gocache.net',
       },
       {
         protocol: 'https',
         hostname: 'yt3.googleusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'assets.fallenstore.com.br',
+      }, 
     ],
   },
 };
