@@ -15,7 +15,7 @@ export default function FuriaChatbot() {
   const API_URL = "http://localhost:5000/api/chat"; // URL do Back End
   const chatContainerRef = useRef(null);
 
-  // Função para listar os jogadores da equipe FURIA
+  // Função para dar uma breve explicação de como funciona o chat bot
   const howToUse = () => {
     // Simulação de envio de uma mensagem do usuário pedindo a lista de jogadores
     const userMessage = {
@@ -35,6 +35,7 @@ export default function FuriaChatbot() {
     setMessages(prev => [...prev, userMessage, botResponse]);
   };
 
+  // Função para listar os jogadores da equipe FURIA
   const listFuriaPlayers = () => {
     // Simulação de envio de uma mensagem do usuário pedindo a lista de jogadores
     const userMessage = {
@@ -60,10 +61,10 @@ export default function FuriaChatbot() {
       content: (
         <div className="flex flex-col space-y-2">
           <span>Fala aí! Aqui é o jogador da FURIA. Como posso ajudar hoje? Bora falar de CS?</span>
-          <div className="flex gap-x-2">
+          <div className="flex flex-col gap-y-2">
             <button 
               onClick={howToUse}
-              className="bg-black flex items-center gap-x-1 bg-white-600 hover:bg-white-700 text-white cursor-pointer rounded-full p-2 transition duration-150"
+              className="bg-black flex items-center gap-x-2 bg-white-600 hover:bg-white-700 text-white cursor-pointer rounded-full p-2 transition duration-150"
               title="Como usar"
             >
               <FileQuestion size={20} />
@@ -71,7 +72,7 @@ export default function FuriaChatbot() {
             </button>
             <button 
               onClick={listFuriaPlayers}
-              className="bg-black flex items-center gap-x-1 bg-white-600 hover:bg-white-700 text-white cursor-pointer rounded-full p-2 transition duration-150"
+              className="bg-black flex items-center gap-x-2 bg-white-600 hover:bg-white-700 text-white cursor-pointer rounded-full p-2 transition duration-150"
               title="Listar jogadores da FURIA"
             >
               <Users size={20} />
@@ -89,7 +90,7 @@ export default function FuriaChatbot() {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
-  }, [messages, error]);
+  }, [messages, error, isLoading]);
 
   const handleSendMessage = async () => {
     if (inputMessage.trim() === "" || isLoading) return;
@@ -208,7 +209,7 @@ export default function FuriaChatbot() {
   };
 
   return (
-    <div className="flex flex-col flex-1 bg-black text-gray-100">
+    <div className="flex flex-col h-[calc(100vh-100.75px)] bg-black text-gray-100">
       <LoadingAnimation />
       {/* Header */}
       <div className="bg-black border-b border-white-600 py-4 px-6 flex justify-between items-center">
@@ -220,7 +221,6 @@ export default function FuriaChatbot() {
             <Menu size={24} />
           </button>
           <div className="flex items-center">
-          <Image alt="logo da equipe furia do cs" width={60} height={60} src="https://yt3.googleusercontent.com/_QDHD8FYiV_Xhk4pdtzme9OOtbg6LMCOcSz3-Sv0AVUbSccWbtQJlIbk2sIEiBbQsIgwn64onQ=s160-c-k-c0x00ffffff-no-rj" />
             <span className="text-white-500 font-bold text-xl">FURIA</span>
             <span className="text-gray-200 font-medium text-xl ml-2">CHATBOT</span>
           </div>
@@ -279,13 +279,13 @@ export default function FuriaChatbot() {
             <div 
               className={`max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl rounded-lg px-4 py-2 ${
                 message.sender === "user" 
-                  ? "bg-white-600 text-white" 
-                  : "bg-gray-800 text-gray-100 border-l-4 border-white-600"
+                  ? "bg-gray-600 text-white" 
+                  : "bg-gray-800 text-white border-l-4 border-white-600"
               }`}
             >
               {/* Verifica se é string ou JSX */}
               {typeof message.content === "string" ? (
-                <span>{message.content}</span>
+                <span className="whitespace-pre-line">{message.content}</span>
               ) : (
                 message.content
               )}
@@ -298,7 +298,7 @@ export default function FuriaChatbot() {
           <div className="flex justify-center my-2">
             <div className="bg-red-900 border border-red-700 rounded-lg px-4 py-2 flex items-center text-white max-w-md">
               <AlertTriangle size={18} className="mr-2 text-white-400" />
-              <p>{error.message}</p>
+              <p>404: Erro de Conexão com o Servidor!</p>
             </div>
           </div>
         )}
