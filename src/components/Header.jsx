@@ -10,8 +10,8 @@ export default function Header() {
       <Image width={defaultSize} height={defaultSize} alt="Logo da Furia ESports, equipe de jogos online" src="https://liquipedia.net/commons/images/a/ad/FURIA_Esports_full_darkmode.png" />
       <div className="flex items-center gap-x-10">
         <Link href="/" className={navItemsStyle}>Home</Link>
-        <Link href="/chatbot" className={navItemsStyle}>ChatBot Furioso</Link>
-        <Link href="/analisefa" className={navItemsStyle}>Análises do Fã</Link>
+        <Link href="/analisefa" className={navItemsStyle}>Perfil do fã</Link>
+        <Link href="/chatbot" className={navItemsStyle}>Entre na Arena</Link>
       </div>
     </header>
   )

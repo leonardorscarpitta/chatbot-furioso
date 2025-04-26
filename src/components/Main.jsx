@@ -11,7 +11,7 @@ export default function Main() {
         <h3 className="text-6xl uppercase font-extrabold text-white">Construindo Juntos</h3>
         <h3 className="text-6xl uppercase font-extrabold text-[#adadad]">O Futuro do ESports</h3>
       </section>
-      <Image alt="torcedor da furia com bandeira do brasil no campeonato em frente a logo da furia esports" className="rounded-lg shadow-[0px_0px_50px_-5px_#adadad]" width={640} height={512} src="https://pley.gg/wp-content/uploads/2024/12/teamsFuriafuria_ed6lhn-9.jpg" />
+      <Image alt="torcedor da furia com bandeira do brasil no campeonato em frente a logo da furia esports" className="rounded-lg shadow-[0px_0px_50px_-5px_#adadad]" width={640} height={512} src="https://e3ba6e8732e83984.cdn.gocache.net/uploads/image/file/3315649/large_e16c13ca11a88104cde6804ada716d03.png" />
       <p className="text-white text-2xl">
         Converse com nosso chat Bot <Link className="underline text-[#eee] hover:opacity-80 transition" href="/chatbot">clicando aqui</Link> para conversar com um player secreto da Furia!
       </p>
