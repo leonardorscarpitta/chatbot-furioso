@@ -1,19 +1,17 @@
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
-import { Send, X, Menu, RefreshCw, AlertTriangle, Users, FileQuestion } from 'lucide-react';
-import Link from 'next/link';
-import Image from 'next/image';
+import { Send, Menu, RefreshCw, AlertTriangle, Users, FileQuestion } from 'lucide-react';
 import LoadingAnimation from '@/utils/LoadingAnimation';
 
 export default function FuriaChatbot() {
   const [inputMessage, setInputMessage] = useState("");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [sessionId, setSessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   const API_URL = "http://localhost:5000/api/chat"; // URL do Back End
   const chatContainerRef = useRef(null);
+  const initialMessage = "Fala aí! Aqui é mais um Fã da Fúria, sobre o que vamos conversar hoje? Só pode ser sobre CS hein!";
 
   // Função para dar uma breve explicação de como funciona o chat bot
   const howToUse = () => {
@@ -60,7 +58,8 @@ export default function FuriaChatbot() {
       id: 1,
       content: (
         <div className="flex flex-col space-y-2">
-          <span>Fala aí! Aqui é o jogador da FURIA. Como posso ajudar hoje? Bora falar de CS?</span>
+          {/* Mensagem Inicial */}
+          <span>{initialMessage}</span>
           <div className="flex flex-col gap-y-2">
             <button 
               onClick={howToUse}
@@ -193,7 +192,7 @@ export default function FuriaChatbot() {
       setMessages([
         { 
           id: 1, 
-          content: "Fala aí! Aqui é o jogador da FURIA. Como posso ajudar hoje? Bora falar de CS?", 
+          content: initialMessage, 
           sender: "bot" 
         }
       ]);
@@ -209,17 +208,11 @@ export default function FuriaChatbot() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-100.75px)] bg-black text-gray-100">
+    <div className="flex flex-col w-[80%] self-center h-[calc(100vh-172.75px)] text-gray-100">
       <LoadingAnimation />
       {/* Header */}
       <div className="bg-black border-b border-white-600 py-4 px-6 flex justify-between items-center">
         <div className="flex items-center space-x-3">
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white-500 hover:text-white-400"
-          >
-            <Menu size={24} />
-          </button>
           <div className="flex items-center">
             <span className="text-white-500 font-bold text-xl">FURIA</span>
             <span className="text-gray-200 font-medium text-xl ml-2">CHATBOT</span>
@@ -236,35 +229,6 @@ export default function FuriaChatbot() {
           </button>
         </div>
       </div>
-      
-      {/* Sidebar */}
-      {isMenuOpen && (
-        <div className="absolute top-16 left-0 w-64 bg-gray-900 h-screen z-10 border-r border-white-600">
-          <div className="p-4 flex justify-between items-center border-b border-gray-700">
-            <span className="font-bold text-white-500">MENU</span>
-            <button 
-              onClick={() => setIsMenuOpen(false)}
-              className="text-gray-400 hover:text-white-500"
-            >
-              <X size={20} />
-            </button>
-          </div>
-          <div className="p-4">
-            <ul className="space-y-3 flex flex-col">
-              <li>
-                <Link href="/" className="p-2 hover:bg-gray-800 rounded cursor-pointer block">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/chatbot" className="p-2 hover:bg-gray-800 rounded cursor-pointer block">
-                  Chat Bot
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      )}
 
       {/* Chat */}
       <div 
@@ -319,7 +283,7 @@ export default function FuriaChatbot() {
       
       {/* Input */}
       <div className="border-t border-gray-800 bg-gray-900 p-4">
-          <div className="flex-1 bg-black rounded-full border border-gray-700 flex items-center px-4 py-2">
+          <div className="flex-1 bg-gray-800 rounded-full border border-gray-700 flex items-center px-4 py-2">
             <input
               type="text"
               placeholder="Mande sua mensagem..."
