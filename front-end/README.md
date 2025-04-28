@@ -14,4 +14,4 @@ cd chatbot-furioso
 ```
 npm run dev
 ```
-4. Altere as variaveis de ambiente do arquivo `.env` para o IP de conexão com o [Back End]().
+4. Altere as variaveis de ambiente do arquivo `.env` para o IP de conexão com o [Back End](https://github.com/leonardorscarpitta/chatbot-furioso/back-end).
