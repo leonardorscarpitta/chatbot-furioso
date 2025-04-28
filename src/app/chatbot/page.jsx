@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
-import { Send, Menu, RefreshCw, AlertTriangle, Users, FileQuestion } from 'lucide-react';
-import LoadingAnimation from '@/utils/LoadingAnimation';
+import { Send, RefreshCw, AlertTriangle, Users, FileQuestion } from 'lucide-react';
 
 export default function FuriaChatbot() {
+  const btnStyle = "bg-black flex items-center gap-x-2 bg-white-600 hover:bg-white-700 text-white cursor-pointer border-2 border-gray-400 p-2 transition duration-150"
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -60,18 +60,18 @@ export default function FuriaChatbot() {
         <div className="flex flex-col space-y-2">
           {/* Mensagem Inicial */}
           <span>{initialMessage}</span>
-          <div className="flex flex-col gap-y-2">
+          <div className="flex gap-x-2">
             <button 
               onClick={howToUse}
-              className="bg-black flex items-center gap-x-2 bg-white-600 hover:bg-white-700 text-white cursor-pointer rounded-full p-2 transition duration-150"
+              className={btnStyle}
               title="Como usar"
             >
               <FileQuestion size={20} />
-              Como usar o chat bot?
+              Como usar o chat?
             </button>
             <button 
               onClick={listFuriaPlayers}
-              className="bg-black flex items-center gap-x-2 bg-white-600 hover:bg-white-700 text-white cursor-pointer rounded-full p-2 transition duration-150"
+              className={btnStyle}
               title="Listar jogadores da FURIA"
             >
               <Users size={20} />
@@ -209,7 +209,6 @@ export default function FuriaChatbot() {
 
   return (
     <div className="flex flex-col w-[80%] self-center h-[calc(100vh-172.75px)] text-gray-100">
-      <LoadingAnimation />
       {/* Header */}
       <div className="bg-black border-b border-white-600 py-4 px-6 flex justify-between items-center">
         <div className="flex items-center space-x-3">
