@@ -11,7 +11,7 @@ export default function Header() {
       <div className="flex items-center gap-x-10">
         <Link href="/" className={navItemsStyle}>Home</Link>
         <Link href="/analisefa" className={navItemsStyle}>Perfil do fã</Link>
-        <Link href="/chatbot" className={navItemsStyle}>Entre na Arena</Link>
+        <Link href="/chatbot" className={navItemsStyle}>Chat Bot</Link>
       </div>
     </header>
   )

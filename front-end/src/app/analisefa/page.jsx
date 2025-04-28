@@ -1,11 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import LoadingAnimation from "@/utils/LoadingAnimation";
 
 export default function FuriaAnalysis() {
   return (
     <main className="flex flex-col gap-y-16 items-center">
-      <LoadingAnimation />
       <section className="flex flex-col items-center">
         <h3 className="text-6xl uppercase font-extrabold text-white">Entenda o que os Fãs</h3>
         <h3 className="text-6xl uppercase font-extrabold text-[#adadad]">Mais gostam na Furia ESports</h3>

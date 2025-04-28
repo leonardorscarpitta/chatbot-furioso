@@ -1,4 +1,3 @@
-import LoadingAnimation from "@/utils/LoadingAnimation";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,7 +6,6 @@ export default function Main() {
 
   return (
     <main className="flex flex-col gap rounded-[16px] gap-y-15 justify-center items-center m-[5%]">
-      <LoadingAnimation />
       <section className="flex flex-col items-center">
         <h3 className="text-6xl uppercase font-extrabold text-white">Construindo Juntos</h3>
         <h3 className="text-6xl uppercase font-extrabold text-[#adadad]">O Futuro do ESports</h3>

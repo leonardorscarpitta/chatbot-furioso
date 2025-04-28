@@ -19,6 +19,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'assets.fallenstore.com.br',
       }, 
+      {
+        protocol: 'https',
+        hostname: 'img-cdn.hltv.org',
+      }, 
     ],
   },
 };

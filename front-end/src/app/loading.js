@@ -4,8 +4,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
-export default function LoadingAnimation() {
-  const router = useRouter();
+export default function Loading() {
+  router = useRouter();
   const [isRouteChanging, setIsRouteChanging] = useState(false);
 
   // Detecta alteração de rota para o status de carregando
