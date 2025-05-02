@@ -60,7 +60,7 @@ export default function FuriaChatbot() {
       content: (
         <div className="flex flex-col space-y-2">
           {/* Mensagem Inicial */}
-          <span className="text-xs">{initialMessage}</span>
+          <span className="text-base">{initialMessage}</span>
           <div className="flex gap-x-2">
             <button 
               onClick={howToUse}
@@ -68,7 +68,7 @@ export default function FuriaChatbot() {
               title="Como usar"
             >
               <FileQuestion size={20} />
-                <span className="text-xs">Como usar o chat?</span>
+                <span className="text-xs">Ajuda</span>
             </button>
             <button 
               onClick={listFuriaPlayers}
@@ -76,7 +76,7 @@ export default function FuriaChatbot() {
               title="Listar jogadores da FURIA"
             >
               <Users size={20} />
-                <span className="text-xs">Line da FURIA CS</span>
+                <span className="text-xs">LineUP</span>
             </button>
           </div>
         </div>
