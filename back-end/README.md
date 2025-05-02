@@ -1,5 +1,5 @@
 # Chat Bot Furioso - Back End
-- Esse projeto é o back end que foi desenvolvido como um challenge para Estagiário de Engenharia de Software da FURIA, totalmente feito em Python.
+- Esse projeto é o back end que foi desenvolvido como um challenge para Estagiário de Engenharia de Software da FURIA, totalmente feito em Python + FlaskAPI e com o deploy realizado na plataforma Render.
 
 ## Manual de Instalação (Rodar Localmente para testes)
 > [!NOTE]
@@ -30,6 +30,13 @@ source <nome_do_diretorio>/Scripts/activate
 source <nome_do_diretorio>/bin/activate
 ```
 📌 E por fim você já pode realizar a instalação das bibliotecas necessárias.
+4. Realize a configuração do arquivo `.env` com as variáveis de Keys.
+```env
+OPENAI_API_KEY=""       # Chave da API do OpenAI
+GOOGLE_API_KEY=""       # Chave da API do Google
+GOOGLE_CSE_ID=""        # ID do mecanismo de pesquisa personalizado do Google
+PORT=5000               # Porta para o servidor Backend (padrão: 5000)
+```
 
 ## Estrutura do Projeto
 ### Métodos da API
