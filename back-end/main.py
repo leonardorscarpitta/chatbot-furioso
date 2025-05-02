@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 from flask import Flask, request, jsonify
 from cachetools import TTLCache
 
-load_dotenv()
+load_dotenv() # Carrega variáveis de ambiente do arquivo .env
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -120,6 +120,7 @@ def sanitize_user_input(message):
     
     return message
 
+
 def should_search(message):
     """
     Determina se a mensagem do usuário requer informações atualizadas; Verifica se a mensagem contém palavras-chave relacionadas a CS2/FURIA e se é uma pergunta relevante.
@@ -150,6 +151,7 @@ def should_search(message):
     # Verificar se realmente precisa de busca
     return is_relevant and (is_question and needs_info)
 
+
 def create_search_query(message):
     """
     Cria uma query otimizada para busca com base na mensagem do usuário; Remove palavras comuns irrelevantes e adiciona termos como "furia" e "cs2" se não estiverem presentes.
@@ -173,6 +175,7 @@ def create_search_query(message):
     # Monta a query final
     query = " ".join(message_words)
     return query
+
 
 def search_with_google_api(query, num_results=3):
     """
@@ -247,6 +250,7 @@ def search_with_google_api(query, num_results=3):
         logger.error(f"Erro na pesquisa: {str(e)}")
         return []
 
+
 def format_search_results(results):
     """
     Formata os resultados da pesquisa para serem incluídos no prompt da IA.
@@ -265,6 +269,7 @@ def format_search_results(results):
         formatted_text += f"  {result['snippet']}\n\n"
     
     return formatted_text
+
 
 def rate_limit_decorator(f):
     """
@@ -371,6 +376,7 @@ def rate_limit_decorator(f):
         return f(*args, **kwargs)
     return decorated_function
 
+
 def cleanup_inactive_sessions():
     """
     Remove sessões inativas (sem atividade por mais de 30 minutos) para economizar memória; Atualiza os mapeamentos de IPs e sessões.
@@ -397,6 +403,7 @@ def cleanup_inactive_sessions():
             ip_sessions[ip] = {sid for sid in ip_sessions[ip] if sid not in inactive_sessions}
             if not ip_sessions[ip]:
                 del ip_sessions[ip]
+
 
 def get_ai_response(user_message, session_id):
     """
@@ -484,6 +491,7 @@ def get_ai_response(user_message, session_id):
         logger.error(f"Erro ao obter resposta da IA: {str(e)}")
         return "Tô com problemas de conexão! A internet tá ruim por aqui, tenta uma outra hora"
 
+
 @app.route('/api/chat', methods=['POST'])
 @rate_limit_decorator
 def chat():
@@ -502,6 +510,7 @@ def chat():
         "timestamp": time.time()
     })
 
+
 @app.route('/api/health', methods=['GET'])
 def health_check():
     return jsonify({
@@ -513,6 +522,7 @@ def health_check():
         "uptime": time.time() - app.start_time
     })
 
+
 @app.route('/api/reset', methods=['POST'])
 @rate_limit_decorator
 def reset_conversation():
@@ -523,6 +533,7 @@ def reset_conversation():
         del conversation_history[session_id]
     
     return jsonify({"status": "success", "message": "Conversa reiniciada"})
+
 
 @app.route('/api/search_stats', methods=['GET'])
 def search_stats_endpoint():
@@ -542,6 +553,7 @@ def search_stats_endpoint():
         "time_to_reset_day": 86400 - (time.time() - search_stats["last_reset_day"])
     })
 
+
 @app.route('/api/clear_cache', methods=['POST'])
 def clear_search_cache():
     """Endpoint administrativo para limpar cache de pesquisa"""
@@ -554,6 +566,7 @@ def clear_search_cache():
     
     return jsonify({"status": "success", "message": "Cache de pesquisa limpo"})
 
+
 @app.before_request
 def initialize():
     if not hasattr(app, 'start_time'):
@@ -561,4 +574,4 @@ def initialize():
     
 if __name__ == '__main__':
     app.start_time = time.time()
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
