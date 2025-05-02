@@ -23,6 +23,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'img-cdn.hltv.org',
       }, 
+      {
+        protocol: 'https',
+        hostname: 'img.icons8.com',
+      }, 
     ],
   },
 };

@@ -9,7 +9,7 @@ export default function FuriaChatbot() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [sessionId, setSessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
-  const API_URL = "http://localhost:5000/api/chat"; // URL do Back End
+  const API_URL = process.env.REACT_APP_IP; // URL do Back End
   const chatContainerRef = useRef(null);
   const initialMessage = "Fala aí! Aqui é mais um Fã da Fúria, sobre o que vamos conversar hoje? Só pode ser sobre CS hein!";
 
@@ -59,7 +59,7 @@ export default function FuriaChatbot() {
       content: (
         <div className="flex flex-col space-y-2">
           {/* Mensagem Inicial */}
-          <span>{initialMessage}</span>
+          <span className="text-xs">{initialMessage}</span>
           <div className="flex gap-x-2">
             <button 
               onClick={howToUse}
@@ -67,7 +67,7 @@ export default function FuriaChatbot() {
               title="Como usar"
             >
               <FileQuestion size={20} />
-              Como usar o chat?
+                <span className="text-xs">Como usar o chat?</span>
             </button>
             <button 
               onClick={listFuriaPlayers}
@@ -75,7 +75,7 @@ export default function FuriaChatbot() {
               title="Listar jogadores da FURIA"
             >
               <Users size={20} />
-              Line da Equipe
+                <span className="text-xs">Line da FURIA CS</span>
             </button>
           </div>
         </div>
@@ -110,7 +110,7 @@ export default function FuriaChatbot() {
     
     try {
       // Chamar a API
-      const response = await fetch(API_URL, {
+      const response = await fetch(`${API_URL}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -169,7 +169,7 @@ export default function FuriaChatbot() {
     setError(null);
     
     try {
-      const response = await fetch('http://localhost:5000/api/reset', {
+      const response = await fetch(`${API_URL}/reset`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -213,8 +213,8 @@ export default function FuriaChatbot() {
       <div className="bg-black border-b border-white-600 py-4 px-6 flex justify-between items-center">
         <div className="flex items-center space-x-3">
           <div className="flex items-center">
-            <span className="text-white-500 font-bold text-xl">FURIA</span>
-            <span className="text-gray-200 font-medium text-xl ml-2">CHATBOT</span>
+            <span className="text-white-500 font-bold text-base">FURIA</span>
+            <span className="text-gray-200 font-medium text-base ml-2">CHATBOT</span>
           </div>
         </div>
         <div className="flex items-center space-x-4">
@@ -286,7 +286,7 @@ export default function FuriaChatbot() {
             <input
               type="text"
               placeholder="Mande sua mensagem..."
-              className="flex-1 bg-transparent focus:outline-none text-gray-200"
+              className="text-xs flex-1 bg-transparent focus:outline-none text-gray-200"
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
               onKeyPress={handleKeyPress}

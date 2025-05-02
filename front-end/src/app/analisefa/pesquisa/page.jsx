@@ -8,7 +8,7 @@ export default function Pesquisa() {
     <main className="flex items-center justify-center p-8">
       <section className="bg-gray-800 rounded-2xl p-8 w-full max-w-md shadow-lg">
         {/* Título */}
-        <h1 className="text-2xl font-bold text-center text-white mb-8">
+        <h1 className="text-base font-bold text-center text-white mb-8">
           PESQUISA - FÚRIA
         </h1>
 
