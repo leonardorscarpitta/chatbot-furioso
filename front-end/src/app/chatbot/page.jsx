@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Send, RefreshCw, AlertTriangle, Users, FileQuestion } from 'lucide-react';
+import LoadPage from '../loading';
 
 export default function FuriaChatbot() {
   const btnStyle = "bg-black flex items-center gap-x-2 bg-white-600 hover:bg-white-700 text-white cursor-pointer border-2 border-gray-400 p-2 transition duration-150"
@@ -208,103 +209,105 @@ export default function FuriaChatbot() {
   };
 
   return (
-    <div className="flex flex-col w-[80%] self-center h-[calc(100vh-172.75px)] text-gray-100">
-      {/* Header */}
-      <div className="bg-black border-b border-white-600 py-4 px-6 flex justify-between items-center">
-        <div className="flex items-center space-x-3">
-          <div className="flex items-center">
-            <span className="text-white-500 font-bold text-base">FURIA</span>
-            <span className="text-gray-200 font-medium text-base ml-2">CHATBOT</span>
+    <LoadPage>
+      <main className="flex flex-col w-[80%] self-center h-[calc(100vh-172.75px)] text-gray-100">
+        {/* Header */}
+        <section className="bg-black border-b border-white-600 py-4 px-6 flex justify-between items-center">
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center">
+              <span className="text-white-500 font-bold text-base">FURIA</span>
+              <span className="text-gray-200 font-medium text-base ml-2">CHATBOT</span>
+            </div>
           </div>
-        </div>
-        <div className="flex items-center space-x-4">
-          <button 
-            onClick={resetConversation}
-            className="text-gray-300 hover:text-white-500 flex items-center"
-            title="Nova conversa"
-            disabled={isLoading}
-          >
-            <RefreshCw size={18} className={isLoading ? "animate-spin" : ""} />
-          </button>
-        </div>
-      </div>
-
-      {/* Chat */}
-      <div 
-        ref={chatContainerRef}
-        className="flex-1 overflow-y-auto px-4 py-6 space-y-4"
-      >
-        {messages.map((message) => (
-          <div 
-            key={message.id}
-            className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
-          >
-            <div 
-              className={`max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl rounded-lg px-4 py-2 ${
-                message.sender === "user" 
-                  ? "bg-gray-600 text-white" 
-                  : "bg-gray-800 text-white border-l-4 border-white-600"
-              }`}
+          <div className="flex items-center space-x-4">
+            <button 
+              onClick={resetConversation}
+              className="text-gray-300 hover:text-white-500 flex items-center"
+              title="Nova conversa"
+              disabled={isLoading}
             >
-              {/* Verifica se é string ou JSX */}
-              {typeof message.content === "string" ? (
-                <span className="whitespace-pre-line">{message.content}</span>
-              ) : (
-                message.content
-              )}
-            </div>
+              <RefreshCw size={18} className={isLoading ? "animate-spin" : ""} />
+            </button>
           </div>
-        ))}
-        
-        {/* Mensagem de erro */}
-        {error && (
-          <div className="flex justify-center my-2">
-            <div className="bg-red-900 border border-red-700 rounded-lg px-4 py-2 flex items-center text-white max-w-md">
-              <AlertTriangle size={18} className="mr-2 text-white-400" />
-              <p>404: Erro de Conexão com o Servidor!</p>
-            </div>
-          </div>
-        )}
-        
-        {/* Indicador de carregando */}
-        {isLoading && (
-          <div className="flex justify-start">
-            <div className="bg-gray-800 text-gray-100 border-l-4 border-white-600 rounded-lg px-4 py-2 flex items-center">
-              <div className="flex space-x-1">
-                <div className="w-2 h-2 bg-white-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                <div className="w-2 h-2 bg-white-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                <div className="w-2 h-2 bg-white-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+        </section>
+
+        {/* Chat */}
+        <section 
+          ref={chatContainerRef}
+          className="flex-1 overflow-y-auto px-4 py-6 space-y-4"
+        >
+          {messages.map((message) => (
+            <div 
+              key={message.id}
+              className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
+            >
+              <div 
+                className={`max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl rounded-lg px-4 py-2 ${
+                  message.sender === "user" 
+                    ? "bg-gray-600 text-white" 
+                    : "bg-gray-800 text-white border-l-4 border-white-600"
+                }`}
+              >
+                {/* Verifica se é string ou JSX */}
+                {typeof message.content === "string" ? (
+                  <span className="whitespace-pre-line">{message.content}</span>
+                ) : (
+                  message.content
+                )}
               </div>
             </div>
+          ))}
+          
+          {/* Mensagem de erro */}
+          {error && (
+            <div className="flex justify-center my-2">
+              <div className="bg-red-900 border border-red-700 rounded-lg px-4 py-2 flex items-center text-white max-w-md">
+                <AlertTriangle size={18} className="mr-2 text-white-400" />
+                <p>404: Erro de Conexão com o Servidor!</p>
+              </div>
+            </div>
+          )}
+          
+          {/* Indicador de carregando */}
+          {isLoading && (
+            <div className="flex justify-start">
+              <div className="bg-gray-800 text-gray-100 border-l-4 border-white-600 rounded-lg px-4 py-2 flex items-center">
+                <div className="flex space-x-1">
+                  <div className="w-2 h-2 bg-white-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                  <div className="w-2 h-2 bg-white-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                  <div className="w-2 h-2 bg-white-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
+        
+        {/* Input */}
+        <section className="border-t border-gray-800 bg-gray-900 p-4">
+            <div className="flex-1 bg-gray-800 rounded-full border border-gray-700 flex items-center px-4 py-2">
+              <input
+                type="text"
+                placeholder="Mande sua mensagem..."
+                className="text-xs flex-1 bg-transparent focus:outline-none text-gray-200"
+                value={inputMessage}
+                onChange={(e) => setInputMessage(e.target.value)}
+                onKeyPress={handleKeyPress}
+                disabled={isLoading}
+              />
+            <button 
+              onClick={handleSendMessage}
+              disabled={isLoading || inputMessage.trim() === ""}
+              className={`${
+                isLoading || inputMessage.trim() === "" 
+                  ? "bg-gray-700 text-gray-500 cursor-not-allowed" 
+                  : "bg-white-600 hover:bg-white-700 text-white cursor-pointer"
+              } rounded-full p-2 transition duration-150`}
+            >
+              <Send size={20} />
+            </button>
           </div>
-        )}
-      </div>
-      
-      {/* Input */}
-      <div className="border-t border-gray-800 bg-gray-900 p-4">
-          <div className="flex-1 bg-gray-800 rounded-full border border-gray-700 flex items-center px-4 py-2">
-            <input
-              type="text"
-              placeholder="Mande sua mensagem..."
-              className="text-xs flex-1 bg-transparent focus:outline-none text-gray-200"
-              value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
-              onKeyPress={handleKeyPress}
-              disabled={isLoading}
-            />
-          <button 
-            onClick={handleSendMessage}
-            disabled={isLoading || inputMessage.trim() === ""}
-            className={`${
-              isLoading || inputMessage.trim() === "" 
-                ? "bg-gray-700 text-gray-500 cursor-not-allowed" 
-                : "bg-white-600 hover:bg-white-700 text-white cursor-pointer"
-            } rounded-full p-2 transition duration-150`}
-          >
-            <Send size={20} />
-          </button>
-        </div>
-      </div>
-    </div>
+        </section>
+      </main>
+    </LoadPage>
   );
 }
