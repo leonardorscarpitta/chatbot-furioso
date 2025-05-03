@@ -111,7 +111,7 @@ export default function FuriaChatbot() {
     
     try {
       // Chamar a API
-      const response = await fetch(`http://localhost:5000/api/chat`, {
+      const response = await fetch(`${API_URL}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -170,7 +170,7 @@ export default function FuriaChatbot() {
     setError(null);
     
     try {
-      const response = await fetch(`http://localhost:5000/api/reset`, {
+      const response = await fetch(`${API_URL}/reset`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
