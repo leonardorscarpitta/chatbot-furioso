@@ -111,7 +111,7 @@ export default function FuriaChatbot() {
     
     try {
       // Chamar a API
-      const response = await fetch(`${API_URL}/chat`, {
+      const response = await fetch(`http://localhost:5000/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -170,7 +170,7 @@ export default function FuriaChatbot() {
     setError(null);
     
     try {
-      const response = await fetch(`${API_URL}/reset`, {
+      const response = await fetch(`http://localhost:5000/api/reset`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -210,7 +210,15 @@ export default function FuriaChatbot() {
 
   return (
     <LoadPage>
-      <main className="flex flex-col w-[80%] self-center h-[calc(100vh-172.75px)] text-gray-100">
+      <main 
+        style = {{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('/background.jpg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed'
+        }} 
+      className="flex flex-col w-[80%] self-center h-[calc(100vh-172.75px)] text-gray-100">
         {/* Header */}
         <section className="bg-black border-b border-white-600 py-4 px-6 flex justify-between items-center">
           <div className="flex items-center space-x-3">
