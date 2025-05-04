@@ -554,6 +554,11 @@ def search_stats_endpoint():
     })
 
 
+@app.route('/')
+def home():
+    return "API inicializada com sucesso!"
+
+
 @app.route('/api/clear_cache', methods=['POST'])
 def clear_search_cache():
     """Endpoint administrativo para limpar cache de pesquisa"""
@@ -571,9 +576,6 @@ def clear_search_cache():
 def initialize():
     if not hasattr(app, 'start_time'):
         app.start_time = time.time()
-
-app = Flask(__name__)
-app.start_time = time.time()
 
 # if __name__ == '__main__':
 #     app.start_time = time.time()
