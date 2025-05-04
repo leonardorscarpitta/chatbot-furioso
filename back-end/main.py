@@ -571,7 +571,10 @@ def clear_search_cache():
 def initialize():
     if not hasattr(app, 'start_time'):
         app.start_time = time.time()
-    
-if __name__ == '__main__':
-    app.start_time = time.time()
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
+app = Flask(__name__)
+app.start_time = time.time()
+
+# if __name__ == '__main__':
+#     app.start_time = time.time()
+#     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

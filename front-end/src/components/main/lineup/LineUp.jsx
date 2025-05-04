@@ -14,7 +14,7 @@ export default function LineUp() {
 
         <CardLineUp nacionality="https://img.icons8.com/color/48/latvia.png" playerName="YEKINDAR" playerFunction="entry fragger" playerImg="https://img-cdn.hltv.org/playerbodyshot/rRclDPBXIMxFv2fv0dV0J0.png?ixlib=java-2.1.0&w=400&s=2b0f6209ca40efa081852b9d1d8e01c1" altText="imagem do jogador yekindar da furia" description={`YEKINDAR é um rifler letão agressivo, ex-Team Liquid e Virtus.pro, conhecido por abrir espaços e jogar como entry fragger com alta precisão e leitura de jogo.`} birthDate="04/12/1999"/>
 
-        <CardLineUp nacionality="https://img.icons8.com/color/48/kazakhstan.png" playerName="molodoy" playerFunction="rifler" playerImg="https://img-cdn.hltv.org/playerbodyshot/qNyAd_xVHTTmbCAKPx-jPk.png?ixlib=java-2.1.0&w=400&s=b128ede878e462107c70590202b14139" altText="imagem do jogador fallen da furia" description={`molodoy é oriundo do Cazaquistão, país natal de campeões mundiais como Abay HObbit e Qikert . Os primeiros passos no competitivo foram dados quando tinha apenas 15 anos.`} birthDate="10/01/2005"/>
+        <CardLineUp nacionality="https://img.icons8.com/color/48/kazakhstan.png" playerName="molodoy" playerFunction="rifler" playerImg="https://img-cdn.hltv.org/playerbodyshot/qNyAd_xVHTTmbCAKPx-jPk.png?ixlib=java-2.1.0&w=400&s=b128ede878e462107c70590202b14139" altText="imagem do jogador fallen da furia" description={`molodoy é oriundo do Cazaquistão, país natal de campeões mundiais como HObbit e Qikert. Os primeiros passos no competitivo foram dados quando tinha apenas 15 anos.`} birthDate="10/01/2005"/>
 
       </div>
     </section>
