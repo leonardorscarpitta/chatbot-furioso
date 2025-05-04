@@ -493,7 +493,7 @@ def get_ai_response(user_message, session_id):
 
 
 @app.route('/api/chat', methods=['POST'])
-@rate_limit_decorator
+# @rate_limit_decorator
 def chat():
     dados = request.json
     mensagem_usuario = dados.get('message', '')
