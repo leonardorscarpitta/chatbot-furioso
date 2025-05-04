@@ -10,7 +10,7 @@ export default function FuriaChatbot() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [sessionId, setSessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
-  const API_URL = process.env.REACT_APP_IP; // URL do Back End
+  const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL; // URL do Back End
   const chatContainerRef = useRef(null);
   const initialMessage = "Fala aí! Aqui é mais um Fã da Fúria, sobre o que vamos conversar hoje? Só pode ser sobre CS hein!";
 
@@ -111,7 +111,7 @@ export default function FuriaChatbot() {
     
     try {
       // Chamar a API
-      const response = await fetch(`http://54.191.253.12:5000/api/chat`, {
+      const response = await fetch(`${NEXT_PUBLIC_API_URL}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -170,7 +170,7 @@ export default function FuriaChatbot() {
     setError(null);
     
     try {
-      const response = await fetch(`http://54.191.253.12:5000/api/reset`, {
+      const response = await fetch(`${NEXT_PUBLIC_API_URL}/reset`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

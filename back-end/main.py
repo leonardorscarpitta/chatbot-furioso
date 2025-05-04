@@ -21,7 +21,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-CORS(app)  # Habilita CORS
+CORS(app, resources={r"/*": {"origins": "*"}})  # Habilita CORS
 
 # API Keys
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
