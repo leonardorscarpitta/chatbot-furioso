@@ -9,7 +9,7 @@ export default function CardLineUp( props ) {
         <small className="text-xs font-bold uppercase text-green-500">
           {props.playerFunction}
         </small></h4>
-      <Image width={400} height={417} src={props.playerImg} alt={props.altText} />
+      <img width={400} height={417} src={props.playerImg} alt={props.altText} />
       <p className="text-base font-bold">{props.birthDate}</p>
       <p>{props.description}</p>
     </div>
