@@ -17,7 +17,7 @@ npm install
 ```
 4. Altere as variaveis de ambiente do arquivo `.env` para o IP de conexão com o [Back End](https://github.com/leonardorscarpitta/chatbot-furioso/back-end).
 ```env
-REACT_APP_IP=""
+NEXT_PUBLIC_API_URL=""
 ```
 5. Inicialize o ambiente de desenvolvimento
 ```
